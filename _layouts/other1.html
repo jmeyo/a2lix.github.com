@@ -3,10 +3,12 @@
     <head>
         {% include head.html %}
     </head>
-    <body data-spy="scroll" data-target=".a2lix-sidebar">
+    <body>
         {% include navbar.html %}
 
-        {{ content }}
+        <div class="container" role="main">
+            {{ content }}
+        </div><!-- /container -->
 
         {% include footer.html %}
 

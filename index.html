@@ -1,0 +1,44 @@
+---
+layout: default
+title: Home
+---
+
+<div class="a2lix-jumbotron masthead">
+    <div class="container">
+        <h1>@2LiX Web Production</h1>
+        <p class="lead">Doing its best with Symfony2</p>
+        <p><a href="/about.html" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="container" role="main">
+    <div class="row">
+        <section class="span4">
+            <h2>Last Symfony2 bundles</h2>
+            <hr>
+            <h4><a href="/bundles/translation-form">A2lixTranslationForm</a></h4>
+            <p>Translate easily yours Doctrine entities</p>
+            <h4><a href="/bundles/datagrid">A2lixDatagrid</a></h4>
+            <p>Not ready</p>
+            <p><a class="btn" href="/bundles">View all &raquo;</a></p>
+        </section>
+
+        <section class="span4">
+            <h2>Last websites projects</h2>
+            <hr>
+            <h4><a href="/projects#becandidate">BeCandidate</a></h4>
+            <p>In standby</p>
+            <p><a class="btn" href="/projects">View all &raquo;</a></p>
+        </section>
+
+        <section class="span4">
+            <h2>Last blog posts</h2>
+            <hr>
+            {% for post in site.posts %}
+            <h4><a href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">{{ post.title }}</a></h4>
+            <p>{{ post.content | truncatewords(10) }}</p>
+            {% endfor %}
+            <p><a class="btn" href="/blog.html">View all &raquo;</a></p>
+        </section>
+    </div>
+</div><!-- /container -->
