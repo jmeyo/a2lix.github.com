@@ -163,7 +163,7 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
                         <tr>
                             <td>
                             </td>
-                            <td colspan="2">
+                            <td colspan="2" class="text-center">
                                 <a data-toggle="modal" href="#howUse-gedmo" class="btn btn-primary btn-large">See quick how to use</a>
                             </td>
                             <td>
@@ -190,8 +190,7 @@ a2lix_translation_form:
     locales: [fr, es, de]       # [1]
     default_required: true      # [2]
     templating: "A2lixTranslationFormBundle::default.html.twig"      # [3]
-    object_manager: "doctrine.orm.entity_manager"      # [4]
-    use_aop: false              # [5]
+    use_aop: false              # [4]
     default_class:
         service: "A2lix\TranslationFormBundle\TranslationForm\DefaultTranslationForm"
         listener: "A2lix\TranslationFormBundle\Form\EventListener\DefaultTranslationsSubscriber"
@@ -205,8 +204,7 @@ a2lix_translation_form:
                     <li>[1] Locales of translations. For solution 1, you can include the default locale or not, depending on whether you prefer separate them or not from translations</li>
                     <li>[2] Default to true. You can override require</li>
                     <li>[3] The default template is Twitter Bootstrap compatible. You can redefine your own template.</li>
-                    <li>[4] You can change it for "doctrine.odm.mongodb.document_manager" by example</li>
-                    <li>[5] Only useful for solution 1 and a backoffice in multiple languages</li>
+                    <li>[4] Only useful for solution 1 and a backoffice in multiple languages</li>
                 </ul>
             </section>
             <section id="bundle-usage">
@@ -252,7 +250,7 @@ $builder->add('translations', 'a2lix_translations_gedmo', array(
     }
 {% endhighlight %}
 
-                <p>Example</p>
+                <h2>Examples</h2>
 {% highlight php %}
 $builder->add('translations', 'a2lix_translations', array(
     'locales' => array('fr', 'es', 'de'),   // [1]
@@ -274,6 +272,21 @@ $builder->add('translations', 'a2lix_translations', array(
 ));
 {% endhighlight %}
 
+                <p>Only available for Knplabs or similar IndexBy way</p>
+
+{% highlight php %}
+$builder->add('translations', 'a2lix_translations', array(
+    'locales' => array('fr', 'es', 'de'),   // [1]
+    'form' => array(                        // [5]
+        'type' => new ProductMediaType(),         // [5.a]
+        'options' => array(                       // [5.b]
+            'context' => 'pdf'
+        )
+    )
+));
+{% endhighlight %}
+
+
                 <ul>
                     <li>[1] If set, override the default value from config.yml</li>
                     <li>[2] If set, override the default value from config.yml</li>
@@ -281,6 +294,9 @@ $builder->add('translations', 'a2lix_translations', array(
                     <li>[3.a] - For a field, applied to all locales</li>
                     <li>[3.b] - For a specific locale of a field</li>
                     <li>[4] Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'type' and 'display'</li>
+                    <li>[5] For a OneToMany relation with a locale field</li>
+                    <li>[5.a] - A real form type that you have to do</li>
+                    <li>[5.b] - An array of options that you can set to your form</li>
                 </ul>
             </section>
             <section id="bundle-advanced">
