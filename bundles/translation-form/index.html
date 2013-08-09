@@ -7,7 +7,8 @@ title: TranslationForm - Bundles
     <div class="container">
         <h1>A2LiX Translation Form</h1>
         <p class="lead">
-            This bundle help you to manage translations entities/objects/forms with a new form type 'a2lix_translations' which will generate automatically right fields.</p>
+            This bundle help you to manage translations entities/objects/forms with a new form type 'a2lix_translations' which will generate automatically right fields.
+        </p>
         <p>
             <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=TranslationFormBundle&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
             <a href="http://knpbundles.com/a2lix/TranslationFormBundle"><img class="knpbundle-img" src="http://knpbundles.com/a2lix/TranslationFormBundle/badge-short"></a>
@@ -48,10 +49,8 @@ public function buildForm(FormBuilderInterface $builder, array $options)
                 )
             )
         ))
-        ->add('medias', 'a2lix_translations', array(
-            'form' => array(
-                'type' => new ProductMediaType(),
-            )
+        ->add('medias', 'a2lix_translationsForms', array(
+            'form_type' => new ProductMediaType(),
         ))
     ;
 }
@@ -188,13 +187,6 @@ a2lix_translation_form:
     locales: [fr, es, de]       # [1]
     default_required: true      # [2]
     templating: "A2lixTranslationFormBundle::default.html.twig"      # [3]
-    use_aop: false              # [4]
-    default_class:
-        service: "A2lix\TranslationFormBundle\TranslationForm\DefaultTranslationForm"
-        listener: "A2lix\TranslationFormBundle\Form\EventListener\DefaultTranslationsSubscriber"
-        types:
-             translations: "A2lix\TranslationFormBundle\Form\Type\TranslationsType"
-             translationsFields: "A2lix\TranslationFormBundle\Form\Type\TranslationsFieldsType"
 {% endhighlight %}
 
 
@@ -202,7 +194,6 @@ a2lix_translation_form:
                     <li>[1] Locales of translations. For solution 1, you can include the default locale or not, depending on whether you prefer separate them or not from translations</li>
                     <li>[2] Default to true. You can override require</li>
                     <li>[3] The default template is Twitter Bootstrap compatible. You can redefine your own template.</li>
-                    <li>[4] Only useful for solution 1 and a backoffice in multiple languages</li>
                 </ul>
             </section>
             <section id="bundle-usage">
@@ -270,16 +261,14 @@ $builder->add('translations', 'a2lix_translations', array(
 ));
 {% endhighlight %}
 
-                <p>Only available for Knplabs or similar IndexBy way</p>
+                <p>Quick forms</p>
 
 {% highlight php %}
-$builder->add('translations', 'a2lix_translations', array(
+$builder->add('translations', 'a2lix_translationsForms', array(
     'locales' => array('fr', 'es', 'de'),   // [1]
-    'form' => array(                        // [5]
-        'type' => new ProductMediaType(),         // [5.a]
-        'options' => array(                       // [5.b]
-            'context' => 'pdf'
-        )
+    'form_type' => new ProductMediaType(),         // [5.a]
+    'form_options' => array(                       // [5.b]
+         'context' => 'pdf'
     )
 ));
 {% endhighlight %}
@@ -292,16 +281,18 @@ $builder->add('translations', 'a2lix_translations', array(
                     <li>[3.a] - For a field, applied to all locales</li>
                     <li>[3.b] - For a specific locale of a field</li>
                     <li>[4] Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'type' and 'display'</li>
-                    <li>[5] For a OneToMany relation with a locale field</li>
                     <li>[5.a] - A real form type that you have to do</li>
                     <li>[5.b] - An array of options that you can set to your form</li>
                 </ul>
             </section>
             <section id="bundle-advanced">
                 <div class="page-header">
-                    <h1>5. Advanced</h1>
+                    <h1>5. Assets</h1>
+                    <p>
+If you use Twitter Bootstrap, additional CSS file is not required. You need only to enable the Twitter Tabs javascript and the a2lix_translation_bootstrap.js file.
+If not, you can use a2lix_translations_default.css and a2lix_translations_default.js.</p>
                 </div>
-                <p>An AOP solution can be used if you use the solution 1 and a backoffice in multiple languages.</p>
+                <p></p>
             </section>
         </div>
     </div>
