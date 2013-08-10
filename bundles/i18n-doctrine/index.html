@@ -17,6 +17,120 @@ title: I18nDoctrine - Bundles
 
 <div class="container" role="main">
     <div class="row">
-        Comming soon.
+        <aside class="span3 a2lix-sidebar">
+            <ul class="nav nav-list a2lix-sidenav affix">
+                <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
+                <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
+                <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
+                <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
+                <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
+            </ul>
+        </aside>
+        <div class="span9">
+            <section id="bundle-requirement">
+                <div class="page-header">
+                    <h1>1. Requirement</h1>
+                </div>
+
+                <ul>
+                    <li>Symfony >= v2.3</li>
+                </ul>
+            </section>
+
+            <section id="bundle-installation">
+                <div class="page-header">
+                    <h1>2. Installation</h1>
+                </div>
+
+                <p>Use composer</p>
+
+{% highlight bash %}
+php composer.phar require a2lix/i18n-doctrine-bundle
+{% endhighlight %}
+
+                <p>After the successful installation, add in your AppKernel.php file</p>
+
+{% highlight php %}
+// in AppKernel::registerBundles()
+$bundles = array(
+// ...
+new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
+// ...
+);
+{% endhighlight %}
+            </section>
+
+            <section id="bundle-configuration">
+                <div class="page-header">
+                    <h1>3. Configuration</h1>
+                </div>
+
+                <p>There is no minimal configuration. Full list:</p>
+
+{% highlight yaml %}
+# app/config/config.yml
+a2lix_i18n_doctrine:
+    manager_registry: doctrine       # [1]
+{% endhighlight %}
+
+                <ul>
+                    <li>[1] Default to doctrine</li>
+                </ul>
+
+                <div class="alert-danger">
+                    'doctrine' is the only one manager_registry available currently.
+                </div>
+            </section>
+
+            <section id="bundle-usage">
+                <div class="page-header">
+                    <h1>4. Usage</h1>
+                </div>
+
+                <p>See Tests/Fixtures</p>
+
+            </section>
+
+            <section id="bundle-advanced">
+                <div class="page-header">
+                    <h1>5. Advanced</h1>
+                </div>
+
+                <p>If you use PHP5.4, you can use some traits provided in Doctrine/O*M/Util</p>
+
+                <p>
+                    During edition of your forms, you need to use the annotation 'I18nDoctrine'.
+                </p>
+
+{% highlight php %}
+use A2lix\I18DoctrineBundle\Annotation\I18nDoctrine;
+...
+
+/**
+ * New/Edit object
+ *
+ * @Route("/new", defaults={"id"=""}, name="backend_product_new")
+ * @Route("/{id}/edit", name="backend_product_edit")
+ * @Template()
+ * @I18nDoctrine
+ */
+public function editAction($id = null)
+{
+...
+{% endhighlight %}
+
+
+                <p>
+                    For minimize requests, I advice to specify the join relation about your translations.
+                </p>
+
+{% highlight sql %}
+SELECT p, pTrans
+    FROM A2lixDemoBundle:Product p
+    JOIN p.translations pTrans
+{% endhighlight %}
+
+            </section>
+        </div>
     </div>
 </div><!-- /container -->

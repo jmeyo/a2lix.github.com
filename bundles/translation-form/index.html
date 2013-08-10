@@ -21,10 +21,11 @@ title: TranslationForm - Bundles
         <aside class="span3 a2lix-sidebar">
             <ul class="nav nav-list a2lix-sidenav affix">
                 <li><a href="#bundle-screenshot"><i class="glyphicon glyphicon-chevron-right"></i> Screenshot</a></li>
+                <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
                 <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
-                <li><a href="#bundle-strategy"><i class="glyphicon glyphicon-chevron-right"></i> Strategy</a></li>
                 <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
                 <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
+                <li><a href="#bundle-additional"><i class="glyphicon glyphicon-chevron-right"></i> Additional</a></li>
                 <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
             </ul>
         </aside>
@@ -35,35 +36,32 @@ title: TranslationForm - Bundles
                 </div>
 
                 <img src="/assets/img/a2lix_translationForm.jpg" class="img-thumbnail" style="height: 400px" />
+            </section>
 
-                <p>From :</p>
-{% highlight php %}
-public function buildForm(FormBuilderInterface $builder, array $options)
-{
-    $builder
-        ->add('translations', 'a2lix_translations', array(
-            'required' => false,
-            'fields' => array(
-                'description' => array(
-                    'label' => "Desc",
-                )
-            )
-        ))
-        ->add('medias', 'a2lix_translationsForms', array(
-            'form_type' => new ProductMediaType(),
-        ))
-    ;
-}
-{% endhighlight %}
+            <section id="bundle-requirement">
+                <div class="page-header">
+                    <h1>1. Requirement</h1>
+                </div>
 
+                <ul>
+                    <li>Symfony >= v2.3</li>
+                    <li>Your Doctrine objects configured with an i18n strategy</li>
+                </ul>
+
+                <p>Some i18n strategies that I can advise you, order by preference :</p>
+
+                <ol>
+                    <li><a href="http://github.com/a2lix/I18nDoctrineBundle">A2lixI18nDoctrineBundle</a> An indexBy strategy</li>
+                    <li><a href="http://github.com/KnpLabs/DoctrineBehaviors">KnpDoctrineExtension</a> An indexBy strategy</li>
+                    <li><a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with persistDefaultLocaleTranslation enabled)</a></li>
+                    <li><a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with its default configuration)</a></li>
+                </ol>
             </section>
 
             <section id="bundle-installation">
                 <div class="page-header">
-                    <h1>1. Installation</h1>
+                    <h1>2. Installation</h1>
                 </div>
-
-                <p>This documentation is about 1.x for symfony >= 2.3.</p>
 
                 <p>Use composer</p>
 
@@ -71,7 +69,7 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 php composer.phar require a2lix/translation-form-bundle
 {% endhighlight %}
 
-                <p>After the successful installation, add the bundle in your AppKernel.php file</p>
+                <p>After the successful installation, add in your AppKernel.php file</p>
 
 {% highlight php %}
 // in AppKernel::registerBundles()
@@ -82,97 +80,6 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 );
 {% endhighlight %}
             </section>
-
-            <section id="bundle-strategy">
-                <div class="page-header">
-                    <h1>2. Strategy</h1>
-                </div>
-
-                <p>You have 3 ways to translate yours entities. With their pros and cons.</p>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>X</th>
-                            <th>1. <a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with its default configuration)</a></th>
-                            <th>2. <a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with persistDefaultLocaleTranslation enabled)</a></th>
-                            <th>3. <a href="http://github.com/KnpLabs/DoctrineBehaviors">KnpDoctrineExtension</a> or similar IndexBy solutions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="first" rowspan="2">
-                                PROS
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>No need of JOIN requests for get the default locale because translations are stored in the native table with others fields</li>
-                                </ul>
-                            </td>
-                            <td colspan="2">
-                                <ul>
-                                    <li>You can change easily the default locale without impacts</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <ul>
-                                    <li>ORM and ODM support</li>
-                                    <li><a href="https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md#orm-query-hint">Query HINT helper</a> for easily change features (fallback by example)</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>Maintained by KnpLabs</li>
-                                    <li>Only one JOIN for get translatable fields because they are stored together</li>
-                                    <li>Code easy to understand, and so, maintain</li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="first" rowspan="2">
-                                CONS
-                            </td>
-                            <td colspan="2">
-                                <ul>
-                                    <li>Number of JOIN requests are equals to the number of translatable fields</li>
-                                    <li>The actual maintainer search a substitute and quality decrease</li>
-                                    <li>Code not so easy to understand, and so, maintain</li>
-                                </ul>
-                            </td>
-                            <td rowspan="2">
-                                <ul>
-                                    <li>Need php5.4 ? (For some maybe, but it's a good reason to upgrade if you don't have it already)</li>
-                                    <li><a href="https://github.com/KnpLabs/DoctrineBehaviors/pull/15">MongoDB compatibility exist but not merged</a></li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>You can't modify the default locale of your website easily if you have existing translations</li>
-                                </ul>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td colspan="2" class="text-center">
-                                <a data-toggle="modal" href="#howUse-gedmo" class="btn btn-primary btn-large">See quick how to use</a>
-                            </td>
-                            <td>
-                                <a data-toggle="modal" href="#howUse-knp" class="btn btn-primary btn-large">See quick how to use</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p>You need to choose one and follow their installations procedure. I prefer the KnpLabs.</p>
-            </section>
-
 
             <section id="bundle-configuration">
                 <div class="page-header">
@@ -186,22 +93,29 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 a2lix_translation_form:
     locales: [fr, es, de]       # [1]
     default_required: true      # [2]
-    templating: "A2lixTranslationFormBundle::default.html.twig"      # [3]
+    manager_registry: doctrine      # [3]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
 {% endhighlight %}
 
-
                 <ul>
-                    <li>[1] Locales of translations. For solution 1, you can include the default locale or not, depending on whether you prefer separate them or not from translations</li>
-                    <li>[2] Default to true. You can override require</li>
-                    <li>[3] The default template is Twitter Bootstrap compatible. You can redefine your own template.</li>
+                    <li>[1] Locales of translations</li>
+                    <li>[2] Default to true</li>
+                    <li>[3] Default to doctrine</li>
+                    <li>[4] The default template is Twitter Bootstrap compatible. You can redefine your own template</li>
                 </ul>
+
+                <div class="alert-info">
+                    About the locales list, <b>GedmoDoctrineExtension (with its default configuration)</b> is a specific case because you can choose to include
+                    or not the default locale with translations locales to regroup all locales in tabs.
+                </div>
             </section>
+
             <section id="bundle-usage">
                 <div class="page-header">
                     <h1>4. Usage</h1>
                 </div>
 
-                <h2>Default way for Knplabs or similar IndexBy way</h2>
+                <h2>For indexBy strategies</h2>
 
                 <p>In a classic formType</p>
 
@@ -218,9 +132,13 @@ $builder->add('translations', 'a2lix_translations');
     }
 {% endhighlight %}
 
-                <h2>Gedmo specific</h2>
+                <h2>Gedmo strategy specificity</h2>
 
-                <p>In a classic formType</p>
+                <p>You have to use 'a2lix_translations_gedmo' instead of 'a2lix_translations'</p>
+                <p>
+                    If you use <b>GedmoDoctrineExtension (with its default configuration)</b> with the choice to include the
+                    default locale with translations locales, you need to specify the 'translatable_class' option.
+                </p>
 
 {% highlight php %}
 $builder->add('translations', 'a2lix_translations_gedmo', array(
@@ -228,18 +146,7 @@ $builder->add('translations', 'a2lix_translations_gedmo', array(
 );
 {% endhighlight %}
 
-                <p>For SonataAdminBundle</p>
-
-{% highlight php %}
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper->add('translations', 'a2lix_translations_gedmo', array(
-            'translatable_class' => "Entity\Product"
-        ));
-    }
-{% endhighlight %}
-
-                <h2>Examples</h2>
+                <h2>Advanced examples</h2>
 {% highlight php %}
 $builder->add('translations', 'a2lix_translations', array(
     'locales' => array('fr', 'es', 'de'),   // [1]
@@ -261,7 +168,22 @@ $builder->add('translations', 'a2lix_translations', array(
 ));
 {% endhighlight %}
 
-                <p>Quick forms</p>
+                <ul>
+                    <li>[1] If set, override the default value from config.yml</li>
+                    <li>[2] If set, override the default value from config.yml</li>
+                    <li>[3] If set, override the auto configuration of fields</li>
+                    <li>[3.a] - For a field, applied to all locales</li>
+                    <li>[3.b] - For a specific locale of a field</li>
+                    <li>[4] Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'type' and 'display'</li>
+                </ul>
+            </section>
+
+            <section id="bundle-additional">
+                <div class="page-header">
+                    <h1>5. Additional</h1>
+                </div>
+
+                <h2>Quick forms</h2>
 
 {% highlight php %}
 $builder->add('translations', 'a2lix_translationsForms', array(
@@ -273,366 +195,54 @@ $builder->add('translations', 'a2lix_translationsForms', array(
 ));
 {% endhighlight %}
 
-
                 <ul>
                     <li>[1] If set, override the default value from config.yml</li>
-                    <li>[2] If set, override the default value from config.yml</li>
-                    <li>[3] If set, override the auto configuration of fields</li>
-                    <li>[3.a] - For a field, applied to all locales</li>
-                    <li>[3.b] - For a specific locale of a field</li>
-                    <li>[4] Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'type' and 'display'</li>
                     <li>[5.a] - A real form type that you have to do</li>
                     <li>[5.b] - An array of options that you can set to your form</li>
                 </ul>
+
+                <h2>Assets</h2>
+
+                <p>
+                    If you already use Twitter Bootstrap, you only need to enable the <a href="http://getbootstrap.com/javascript/#tabs">Tab functionality</a>
+                    and use <b>a2lix_translation_bootstrap.js</b>.
+                </p>
+                <p>
+                    Else, you will still need jquery, and you use <b>a2lix_translations_default.js</b> and <b>a2lix_translations_default.css</b>.
+                </p>
             </section>
+
             <section id="bundle-advanced">
                 <div class="page-header">
-                    <h1>5. Assets</h1>
-                    <p>
-If you use Twitter Bootstrap, additional CSS file is not required. You need only to enable the Twitter Tabs javascript and the a2lix_translation_bootstrap.js file.
-If not, you can use a2lix_translations_default.css and a2lix_translations_default.js.</p>
+                    <h1>6. Advanced</h1>
                 </div>
-                <p></p>
+
+                <p>If you use PHP5.4, you can use some traits provided in Util</p>
+
+                <p>
+                    If you use <b>GedmoDoctrineExtension (with its default configuration)</b> and a multilingual backoffice, you need, during edition of your forms,
+                    to fix the current locale to the default locale.<br>
+                    I provide an annotation 'GedmoTranslation' for help you.
+                </p>
+
+{% highlight php %}
+use A2lix\TranslationFormBundle\Annotation\GedmoTranslation;
+...
+
+/**
+ * New/Edit object
+ *
+ * @Route("/new", defaults={"id"=""}, name="backend_product_new")
+ * @Route("/{id}/edit", name="backend_product_edit")
+ * @Template()
+ * @GedmoTranslation
+ */
+public function editAction($id = null)
+{
+...
+{% endhighlight %}
+
             </section>
         </div>
     </div>
 </div><!-- /container -->
-
-<!-- Modal 1 -->
-<div id="howUse-gedmo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Quich Howto use Gedmo</h4>
-            </div>
-            <div class="modal-body">
-                <p>Example for this Product entity</p>
-
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity
- */
-class Product
-{
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-}
-{% endhighlight %}
-
-                    <p>Install :</p>
-{% highlight bash %}
-php composer.phar require stof/doctrine-extensions-bundle
-{% endhighlight %}
-
-                    <p>AppKernel.php file</p>
-{% highlight php %}
-// In AppKernel::registerBundles()
-$bundles = array(
-// ...
-new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-// ...
-);
-{% endhighlight %}
-
-                    <p>Config.yml file</p>
-{% highlight yaml %}
-stof_doctrine_extensions:
-    default_locale: %locale%
-    persist_default_translation: false     # Or true if you plan to change default locale
-    orm:
-        default:
-            translatable: true
-{% endhighlight %}
-
-                    <p>Entity update with <a href="https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md#personal-translations">personal translations feature</a></p>
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
-
-/**
- * @ORM\Entity
- * @Gedmo\TranslationEntity(class="ProductTranslation")
- */
-class Product
-{
-    use \A2lix\TranslationFormBundle\Util\GedmoTranslatable;
-
-    ...
-
-    /**
-     * @ORM\Column
-     * @Gedmo\Translatable
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Gedmo\Translatable
-     */
-    private $description;
-
-    /**
-     * @ORM\OneToMany(
-     *     targetEntity="ProductTranslation",
-     *     mappedBy="object", cascade={"persist", "remove"}
-     * )
-     */
-    private $translations;
-
-    public function __construct()
-    {
-        $this->translations = new ArrayCollection();
-    }
-
-    ...
-}
-{% endhighlight %}
-
-                    <p>Translation Entity update with <a href="https://github.com/l3pp4rd/DoctrineExtensions/blob/master/doc/translatable.md#personal-translations">personal translations feature</a></p>
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
-
-/**
- * @ORM\Entity
- * @ORM\Table(name="product_translations",
- *   uniqueConstraints={@ORM\UniqueConstraint(name="lookup_unique_idx", columns={
- *     "locale", "object_id", "field"
- *   })}
- * )
- */
-class ProductTranslation extends AbstractPersonalTranslation
-{
-    /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="translations")
-     * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $object;
-}
-{% endhighlight %}
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dalog -->
-</div><!-- /.modal 1 -->
-
-
-
-<!-- Modal 2 -->
-<div id="howUse-knp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Quich Howto use Knp</h4>
-            </div>
-            <div class="modal-body">
-                <p>Example for this Product entity</p>
-
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity
- */
-class Product
-{
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-}
-{% endhighlight %}
-
-
-                    <p>Install :</p>
-{% highlight bash %}
-php composer.phar require knplabs/doctrine-behaviors
-{% endhighlight %}
-
-                    <p>Config.yml file</p>
-{% highlight yaml %}
-imports:
-    ...
-    - { resource: ../../vendor/a2lix/translation-form-bundle/A2lix/TranslationFormBundle/Util/knplabs.yml }
-{% endhighlight %}
-
-                    <p>Entity update</p>
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity
- */
-class Product
-{
-    use \A2lix\TranslationFormBundle\Util\KnpTranslatable;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-}
-{% endhighlight %}
-
-                    <p>Translation Entity update</p>
-{% highlight php %}
-namespace Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity
- */
-class ProductTranslation
-{
-    use \Knp\DoctrineBehaviors\Model\Translatable\Translation;
-
-    /**
-     * @ORM\Column
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
-
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-}
-{% endhighlight %}
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dalog -->
-</div><!-- /.modal 2 -->
