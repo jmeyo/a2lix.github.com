@@ -87,7 +87,167 @@ a2lix_i18n_doctrine:
                     <h1>4. Usage</h1>
                 </div>
 
-                <p>See Tests/Fixtures</p>
+                <p>Example for an existing object Product</p>
+
+{% highlight php %}
+namespace Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class Product
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}
+{% endhighlight %}
+
+                <p>
+                    To internationalize this entity, we need to do some refactors.<br>
+                    First, we move fields concerned by translations into a new object, call the translation object: Object<b>Translation</b>.<br>
+                    Our original object, relieved of some code, is call translatable object.<br>
+                </p>
+
+                <p>Our translatable object</p>
+
+{% highlight php %}
+namespace Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class Product
+{
+    use \A2lix\I18nDoctrineBundle\Doctrine\ORM\Util\Translatable;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    protected $translations;
+
+    public function __contruct()
+    {
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+{% endhighlight %}
+
+                <div class="alert-danger">
+                    Note that 'use \A2lix\I18nDoctrineBundle\Doctrine\ORM\Util\Translatable;' is only possible if you have PHP5.4+, else you need
+                    to copy manually the code of this trait.
+                </div>
+
+                <p>Our translatable object</p>
+
+{% highlight php %}
+namespace Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
+class ProductTranslation implements \A2lix\I18nDoctrineBundle\Doctrine\Interfaces\OneLocaleInterface
+{
+    use \A2lix\I18nDoctrineBundle\Doctrine\ORM\Util\Translation;
+
+    /**
+     * @ORM\Column
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}
+{% endhighlight %}
+
+                <div class="alert-danger">
+                    Note that, here too, 'use \A2lix\I18nDoctrineBundle\Doctrine\ORM\Util\Translation;' is only possible if you have PHP5.4+, else you need
+                    to copy manually the code of this trait.
+                </div>
 
             </section>
 
@@ -96,7 +256,7 @@ a2lix_i18n_doctrine:
                     <h1>5. Advanced</h1>
                 </div>
 
-                <p>If you use PHP5.4, you can use some traits provided in Doctrine/O*M/Util</p>
+                <p>If you use PHP5.4+, you can use some traits provided in Doctrine/O*M/Util</p>
 
                 <p>
                     During edition of your forms, you need to use the annotation 'I18nDoctrine'.
@@ -121,7 +281,7 @@ public function editAction($id = null)
 
 
                 <p>
-                    For minimize requests, I advice to specify the join relation about your translations.
+                    For minimize requests number, I advice to specify the join relation about your translations.
                 </p>
 
 {% highlight sql %}
