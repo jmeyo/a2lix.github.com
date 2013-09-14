@@ -8,6 +8,7 @@ title: I18nDoctrine - Bundles
         <h1>A2LiX I18n Doctrine</h1>
         <p class="lead">
             Another alternative to Gedmo and KnpLabs DoctrineExtension for translate your Doctrine objects. On same approach of the KnpLabs strategy but with the use of Doctrine Filters.
+            (Important, no fallback strategy to the default locale will be implemented. You should see the wip-2.4 version of Gedmo Doctrine Extension as alternative)
         </p>
         <p>
             <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=I18nDoctrineBundle&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
@@ -69,6 +70,23 @@ new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
 
 {% highlight yaml %}
 # app/config/config.yml
+
+# FIRST, update your Doctrine Configuration (http://symfony.com/doc/current/reference/configuration/doctrine.html) as :
+doctrine:
+    [...]
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+#        auto_mapping: true
+        entity_managers:
+            default:
+                auto_mapping: true
+                # New custom filter
+                filters:
+                    oneLocale:
+                        class: A2lix\I18nDoctrineBundle\Doctrine\ORM\Filter\OneLocaleFilter
+                        enabled: true
+
+# SECOND, add:
 a2lix_i18n_doctrine:
     manager_registry: doctrine       # [1]
 {% endhighlight %}
