@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<div class="a2lix-jumbotron subhead">
+<div class="jumbotron a2lix-jumbotron subhead">
     <div class="container">
         <h1>Blog posts</h1>
     </div>
@@ -19,7 +19,7 @@ title: Home
             </h1>
         </header>
         {{ post.content | truncatewords(50) }}
-        <p><a class="btn" href="{{ post.url }}">Read more &raquo;</a></p>
+        <p><a class="btn btn-default" href="{{ post.url }}">Read more &raquo;</a></p>
     </article>
     {% endfor %}
 </div><!-- /container -->

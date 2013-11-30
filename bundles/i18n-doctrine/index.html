@@ -3,8 +3,8 @@ layout: default
 title: I18nDoctrine - Bundles
 ---
 
-<header class="a2lix-jumbotron subhead">
-    <div class="container">
+<header class="jumbotron a2lix-jumbotron subhead">
+    <div class="jumbotron">
         <h1>A2LiX I18n Doctrine</h1>
         <p class="lead">
             Another alternative to Gedmo and KnpLabs DoctrineExtension for translate your Doctrine objects. On same approach of the KnpLabs strategy but with the use of Doctrine Filters.<br>
@@ -18,8 +18,13 @@ title: I18nDoctrine - Bundles
 
 <div class="container" role="main">
     <div class="row">
-        <aside class="span3 a2lix-sidebar">
-            <ul class="nav nav-list a2lix-sidenav affix">
+        <aside class="col-lg-3 a2lix-sidebar">
+            <h3>Versions</h3>
+            <ul class="nav nav-pills a2lix-version">
+                <li><a href="/bundles/i18n-doctrine">master</a></li>
+            </ul>
+            <h3>Contents</h3>
+            <ul class="nav nav-list a2lix-sidenav" data-spy="affix" data-offset-top="430">
                 <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
                 <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
                 <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
@@ -27,7 +32,7 @@ title: I18nDoctrine - Bundles
                 <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
             </ul>
         </aside>
-        <div class="span9">
+        <div class="col-lg-9">
             <section id="bundle-requirement">
                 <div class="page-header">
                     <h1>1. Requirement</h1>

@@ -1,15 +1,16 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
-        <a class="navbar-brand" href="/">{{ site.website_title }}</a>
-
-        <nav class="nav-collapse collapse navbar-responsive-collapse" role="navigation">
-            <ul class="nav">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">{{ site.website_title }}</a>
+        </div>
+        <nav class="navbar-collapse collapse" role="navigation">
+            <ul class="nav navbar-nav">
                 <li {% if "/index.html" == page.url %}class="active"{% endif %}><a href="/">Home</a></li>
                 <li class="dropdown {% if "/bundles/translation-form/index.html" == page.url %}active{% endif %}">
                     <a href="/bundles" class="dropdown-toggle" data-toggle="dropdown">Symfony2 Bundles <b class="caret"></b></a>
@@ -22,7 +23,7 @@
                 <li {% if "/projects/index.html" == page.url %}class="active"{% endif %}><a href="/projects">Projects</a></li>
                 <li {% if "/blog.html" == page.url %}class="active"{% endif %}><a href="/blog.html">Blog</a></li>
                 <li {% if "/about.html" == page.url %}class="active"{% endif %}><a href="/about.html">About</a></li>
-              </ul>
-          </nav><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-  </div><!-- /.navbar -->
+            </ul>
+        </nav><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</div><!-- /.navbar -->
