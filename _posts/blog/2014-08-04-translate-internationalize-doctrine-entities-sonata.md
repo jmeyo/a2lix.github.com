@@ -49,6 +49,3 @@ This Demo include use a fork of SonataAdmin (https://github.com/sonata-project/S
 magic method __call. Hope theses PRs will be merged, otherwise, it can work but with a more verbose version of translatable entities...
 
 Have a look at http://a2lix.fr/bundles/translation-form/#bundle-additional for additional features too. I'll see to complete the demo.
-
-
-{% include disqus.html %}

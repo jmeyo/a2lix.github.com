@@ -2,12 +2,17 @@
 layout: default
 ---
 
-<article>
-    <header>
-        <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_long_string }}</time>
-        <h1>
-            {{ page.title }}
-        </h1>
-    </header>
-    {{ content }}
-</article>
+<div class="container" role="main">
+    <article>
+        <header>
+            <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date_to_long_string }}</time>
+            <h1>
+                {{ page.title }}
+            </h1>
+        </header>
+
+        {{ content }}
+    </article>
+
+    {% include disqus.html %}
+</div><!-- /container -->
