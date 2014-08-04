@@ -6,6 +6,6 @@ exclude: ["README.md","nbproject"]
 paginate: 10
 paginate_path: page:num
 
-website_url: www.a2lix.fr
+website_url: a2lix.fr
 website_title: A2LiX
 website_author: David ALLIX
