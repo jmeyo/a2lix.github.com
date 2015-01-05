@@ -98,22 +98,30 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
                     <h1>3. Configuration</h1>
                 </div>
 
-                <p>There is no minimal configuration. Full list:</p>
+                <p>There is no minimal configuration. Full list of optionnal parameters:</p>
 
 {% highlight yaml %}
 # app/config/config.yml
 a2lix_translation_form:
-    locales: [fr, es, de]       # [1]
-    required_locales: [fr]      # [2]
-    manager_registry: doctrine      # [3]
-    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+    locale_provider: default       # [1]
+    locales: [fr, es, de]          # [1-a]
+    default_locale: en             # [1-b]
+    required_locales: [fr]         # [1-c]
+    manager_registry: doctrine      # [2]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [3]
 {% endhighlight %}
 
                 <ul>
-                    <li>[1] Locales of translations</li>
-                    <li>[2] Empty by default</li>
-                    <li>[3] Default to 'doctrine'</li>
-                    <li>[4] The default template is Twitter Bootstrap compatible. You can redefine your own template</li>
+                    <li>
+                        [1] Custom locale provider service id. Default one relies on [1-*] values:
+                        <ul>
+                            <li>[1-a] List of translations locales to propose</li>
+                            <li>[1-b] Default locale</li>
+                            <li>[1-c] List of required translations locales</li>
+                        </ul>
+                    </li>
+                    <li>[2] Default to 'doctrine'</li>
+                    <li>[3] The default template is Twitter Bootstrap compatible. You can redefine your own here</li>
                 </ul>
             </section>
 
