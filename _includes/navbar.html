@@ -1,7 +1,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -9,15 +9,15 @@
             </button>
             <a class="navbar-brand" href="/">{{ site.website_title }}</a>
         </div>
-        <nav class="navbar-collapse collapse" role="navigation">
+        <nav class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
-                <li {% if "/index.html" == page.url %}class="active"{% endif %}><a href="/">Home</a></li>
-                <li class="dropdown {% if "/bundles/translation-form/index.html" == page.url %}active{% endif %}">
-                    <a href="/bundles" class="dropdown-toggle" data-toggle="dropdown">Symfony2 Bundles <b class="caret"></b></a>
+                <li {% if "/" == page.url %}class="active"{% endif %}><a href="/">Home</a></li>
+                <li {% if page.bundle %}class="active"{% endif %}>
+                    <a href="/bundles" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Symfony2 Bundles <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li {% if "/bundles/translation-form/index.html" == page.url %}class="active"{% endif %}><a href="/bundles/translation-form">A2lixTranslationForm</a></li>
-                        <li {% if "/bundles/i18n-doctrine/index.html" == page.url %}class="active"{% endif %}><a href="/bundles/i18n-doctrine">A2lixI18nDoctrine</a></li>
-                        <li {% if "/bundles/datagrid/index.html" == page.url %}class="active"{% endif %}><a href="/bundles/datagrid">A2lixDatagrid</a></li>
+                        <li {% if "translation-form" == page.bundle %}class="active"{% endif %}><a href="/bundles/translation-form/3.x.html">A2lixTranslationForm</a></li>
+                        <li {% if "i18n-doctrine" == page.bundle %}class="active"{% endif %}><a href="/bundles/i18n-doctrine/0.x.html">A2lixI18nDoctrine</a></li>
+                        <li {% if "auto-form" == page.bundle %}class="active"{% endif %}><a href="/bundles/auto-form/0.x.html">A2lixAutoForm</a></li>
                     </ul>
                 </li>
                 <li {% if "/projects/index.html" == page.url %}class="active"{% endif %}><a href="/projects">Projects</a></li>
@@ -27,3 +27,4 @@
         </nav><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </div><!-- /.navbar -->
+{{ }}

@@ -1,6 +1,10 @@
 ---
 layout: default
-title: TranslationForm - Bundles - 1.4
+title: TranslationForm - Bundles - 1.x
+redirect_from:
+  - /bundles/translation-form/1.3.html
+  - /bundles/translation-form/1.4.html
+bundle: translation-form
 ---
 
 <header class="jumbotron a2lix-jumbotron subhead">
@@ -18,12 +22,12 @@ title: TranslationForm - Bundles - 1.4
 
 <div class="container" role="main">
     <div class="row">
-        <aside class="col-lg-3 a2lix-sidebar">
+        <aside class="col-md-3 a2lix-sidebar">
             <h3>Versions</h3>
             <ul class="nav nav-pills a2lix-version">
-                <li><a href="/bundles/translation-form">master (2.0)</a></li>
-                <li><a href="/bundles/translation-form/1.3.html">1.3</a></li>
-                <li class="active"><a href="/bundles/translation-form/1.4.html">1.4</a></li>
+                <li><a href="/bundles/translation-form/3.x.html">3.x (latest)</a></li>
+                <li><a href="/bundles/translation-form/2.x.html">2.x</a></li>
+                <li class="active"><a href="/bundles/translation-form/1.x.html">1.x</a></li>
             </ul>
             <h3>Contents</h3>
             <div id="scrollspy">
@@ -38,10 +42,10 @@ title: TranslationForm - Bundles - 1.4
                 </ul>
             </div>
         </aside>
-        <div class="col-lg-9">
+        <div class="col-md-9">
             <section id="bundle-screenshot">
                 <div class="page-header">
-                    <h1>0. Screenshot</h1>
+                    <h3>0. Screenshot</h3>
                 </div>
 
                 <img src="/assets/img/a2lix_translationForm.jpg" class="img-thumbnail" style="height: 400px" />
@@ -49,11 +53,11 @@ title: TranslationForm - Bundles - 1.4
 
             <section id="bundle-requirement">
                 <div class="page-header">
-                    <h1>1. Requirement</h1>
+                    <h3>1. Requirement</h3>
                 </div>
 
                 <ul>
-                    <li>Symfony >= v2.3</li>
+                    <li>Symfony >= v2.3 but Symfony < 3.x</li>
                     <li>Your Doctrine objects configured with an i18n strategy</li>
                 </ul>
 
@@ -61,7 +65,7 @@ title: TranslationForm - Bundles - 1.4
 
                 <ol>
                     <li><a href="http://github.com/a2lix/I18nDoctrineBundle">A2lixI18nDoctrineBundle</a> An indexBy strategy</li>
-                    <li><a href="http://github.com/KnpLabs/DoctrineBehaviors">KnpDoctrineExtension</a> An indexBy strategy PHP5.4</li>
+                    <li><a href="https://github.com/KnpLabs/DoctrineBehaviors#translatable">KnpDoctrineExtension</a> An indexBy strategy PHP5.4</li>
                     <li><a href="http://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md">PrezentDoctrineTranslatableBundle</a> An indexBy strategy PHP5.3</li>
                     <li><a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with persistDefaultLocaleTranslation enabled)</a></li>
                     <li><a href="http://github.com/l3pp4rd/DoctrineExtensions">GedmoDoctrineExtension (with its default configuration)</a></li>
@@ -70,13 +74,13 @@ title: TranslationForm - Bundles - 1.4
 
             <section id="bundle-installation">
                 <div class="page-header">
-                    <h1>2. Installation</h1>
+                    <h3>2. Installation</h3>
                 </div>
 
                 <p>Use composer</p>
 
 {% highlight bash %}
-php composer.phar require a2lix/translation-form-bundle
+composer require a2lix/translation-form-bundle
 {% endhighlight %}
 
                 <p>After the successful installation, add in your AppKernel.php file</p>
@@ -93,7 +97,7 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 
             <section id="bundle-configuration">
                 <div class="page-header">
-                    <h1>3. Configuration</h1>
+                    <h3>3. Configuration</h3>
                 </div>
 
                 <p>There is no minimal configuration. Full list:</p>
@@ -101,8 +105,8 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 {% highlight yaml %}
 # app/config/config.yml
 a2lix_translation_form:
-    locales: [fr, es, de]       # [1]
-    default_required: true      # [2]
+    locales: [en, fr, es, de]       # [1]
+    default_required: true          # [2]
     manager_registry: doctrine      # [3]
     templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
 {% endhighlight %}
@@ -122,10 +126,10 @@ a2lix_translation_form:
 
             <section id="bundle-usage">
                 <div class="page-header">
-                    <h1>4. Usage</h1>
+                    <h3>4. Usage</h3>
                 </div>
 
-                <h2>For indexBy strategies</h2>
+                <h4>For indexBy strategies</h4>
 
                 <p>In a classic formType</p>
 
@@ -133,16 +137,7 @@ a2lix_translation_form:
 $builder->add('translations', 'a2lix_translations');
 {% endhighlight %}
 
-                <p>For SonataAdminBundle</p>
-
-{% highlight php %}
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper->add('translations', 'a2lix_translations');
-    }
-{% endhighlight %}
-
-                <h2>Gedmo strategy specificity</h2>
+                <h4>Gedmo strategy specificity</h4>
 
                 <p>You have to use 'a2lix_translations_gedmo' instead of 'a2lix_translations'</p>
                 <p>
@@ -156,22 +151,18 @@ $builder->add('translations', 'a2lix_translations_gedmo', array(
 );
 {% endhighlight %}
 
-                <h2>Advanced examples</h2>
+                <h4>Advanced examples</h4>
 {% highlight php %}
 $builder->add('translations', 'a2lix_translations', array(
-    'locales' => array('fr', 'es', 'de'),   // [1]
+    'locales' => array('en', 'fr', 'es', 'de'),   // [1]
     'required' => false,                    // [2]
     'fields' => array(                      // [3]
         'description' => array(                   // [3.a]
-            'field_type' => 'textarea',                 // [4]
-            'label' => 'descript.',                     // [4]
+            'field_type' => 'textarea',                     // [4]
+            'label' => 'descript.',                         // [4]
             'locale_options' => array(            // [3.b]
-                'es' => array(
-                    'label' => 'descripción'            // [4]
-                ),
-                'fr' => array(
-                    'display' => false                  // [4]
-                )
+                'es' => array('label' => 'descripción')     // [4]
+                'fr' => array('display' => false)           // [4]
             )
         )
     )
@@ -179,36 +170,36 @@ $builder->add('translations', 'a2lix_translations', array(
 {% endhighlight %}
 
                 <ul>
-                    <li>[1] If set, override the default value from config.yml</li>
-                    <li>[2] If set, override the default value from config.yml</li>
-                    <li>[3] If set, override the auto configuration of fields</li>
-                    <li>[3.a] - For a field, applied to all locales</li>
-                    <li>[3.b] - For a specific locale of a field</li>
-                    <li>[4] Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'field_type' and 'display'</li>
+                    <li>[1] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[2] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[3] Optionnal. If set, override the auto configuration of fields</li>
+                    <li>[3.a] Optionnal. - For a field, applied to all locales</li>
+                    <li>[3.b] Optionnal. - For a specific locale of a field</li>
+                    <li>[4] Optionnal. Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'field_type' and 'display'</li>
                 </ul>
             </section>
 
             <section id="bundle-additional">
                 <div class="page-header">
-                    <h1>5. Additional</h1>
+                    <h3>5. Additional</h3>
                 </div>
 
                 <h2>Quick forms</h2>
 
 {% highlight php %}
 $builder->add('translations', 'a2lix_translationsForms', array(
-    'locales' => array('fr', 'es', 'de'),   // [1]
-    'form_type' => new ProductMediaType(),         // [5.a]
-    'form_options' => array(                       // [5.b]
+    'locales' => array('fr', 'es', 'de'),       // [1]
+    'form_type' => new ProductMediaType(),         // [2]
+    'form_options' => array(                       // [2bis]
          'context' => 'pdf'
     )
 ));
 {% endhighlight %}
 
                 <ul>
-                    <li>[1] If set, override the default value from config.yml</li>
-                    <li>[5.a] - A real form type that you have to do</li>
-                    <li>[5.b] - An array of options that you can set to your form</li>
+                    <li>[1] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[2] Mandatory. A real form type that you have to do</li>
+                    <li>[2bis] Optionnal. - An array of options that you can set to your form</li>
                 </ul>
 
                 <h2>Assets</h2>
@@ -218,13 +209,13 @@ $builder->add('translations', 'a2lix_translationsForms', array(
                     and use <b>a2lix_translation_bootstrap.js</b>.
                 </p>
                 <p>
-                    Else, you will still need jquery, and you use <b>a2lix_translation_default.js</b> and <b>a2lix_translation_default.css</b>.
+                    Otherwise, you will still need jquery, and you use <b>a2lix_translation_default.js</b> and <b>a2lix_translation_default.css</b>.
                 </p>
             </section>
 
             <section id="bundle-advanced">
                 <div class="page-header">
-                    <h1>6. Advanced</h1>
+                    <h3>6. Advanced</h3>
                 </div>
 
                 <p>If you use PHP5.4, you can use some traits provided in Util repository</p>

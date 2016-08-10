@@ -9,7 +9,6 @@ footer {
     text-align: center;
 }
 
-
 .github-btn {
     vertical-align: middle;
 }
@@ -31,7 +30,7 @@ footer {
 }
 
 .a2lix-sidenav.affix {
-  top: 60px;
+    top: 60px;
 }
 
 .a2lix-sidenav .glyphicon-chevron-right {
@@ -41,9 +40,11 @@ footer {
     opacity: .25;
     color: #000;
 }
+
 .a2lix-sidenav a:hover .glyphicon-chevron-right {
     opacity: .5;
 }
+
 .a2lix-sidenav .active .glyphicon-chevron-right,
 .a2lix-sidenav .active a:hover .glyphicon-chevron-right {
     color: #fff;
@@ -81,6 +82,7 @@ footer {
     margin-top: 100px;
     border-top: 1px solid #e5e5e5;
 }
+
 .a2lix-footer p {
     color: #777;
 }

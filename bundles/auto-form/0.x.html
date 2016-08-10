@@ -1,0 +1,105 @@
+---
+layout: default
+title: AutoForm - Bundles
+redirect_from:
+  - /bundles/auto-form/
+bundle: auto-form
+---
+
+<header class="jumbotron a2lix-jumbotron subhead">
+    <div class="container">
+        <h1>A2LiX AutoForm</h1>
+        <p class="lead">
+
+        </p>
+        <p>
+            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=AutoFormBundle&type=watch&count=true"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+        </p>
+    </div>
+</header>
+
+<div class="container" role="main">
+    <div class="row">
+        <aside class="col-md-3 a2lix-sidebar">
+            <h3>Versions</h3>
+            <ul class="nav nav-pills a2lix-version">
+                <li class="active"><a href="/bundles/auto-form/0.x.html">0.x (latest)</a></li>
+            </ul>
+            <h3>Contents</h3>
+            <div id="scrollspy">
+                <ul class="nav nav-pills nav-stacked a2lix-sidenav" data-spy="affix" data-offset-top="525">
+                    <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
+                    <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
+                    <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
+                    <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
+                    <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="col-md-9">
+            <section id="bundle-requirement">
+                <div class="page-header">
+                    <h3>1. Requirement</h3>
+                </div>
+
+                <ul>
+                    <li>Symfony >= v2.3</li>
+                </ul>
+            </section>
+
+            <section id="bundle-installation">
+                <div class="page-header">
+                    <h3>2. Installation</h3>
+                </div>
+
+                <p>Use composer</p>
+
+{% highlight bash %}
+composer require a2lix/auto-form-bundle
+{% endhighlight %}
+
+                <p>After the successful installation, add in your AppKernel.php file</p>
+
+{% highlight php %}
+// in AppKernel::registerBundles()
+$bundles = array(
+// ...
+new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
+// ...
+);
+{% endhighlight %}
+            </section>
+
+            <section id="bundle-configuration">
+                <div class="page-header">
+                    <h3>3. Configuration</h3>
+                </div>
+
+                <p>There is no minimal configuration. Full list:</p>
+
+{% highlight yaml %}
+# app/config/config.yml
+a2lix_auto_form:
+    excluded_fields: [id, locale, translatable]       # [1]
+{% endhighlight %}
+
+                <ul>
+                    <li>[1] Optionnal.</li>
+                </ul>
+            </section>
+
+            <section id="bundle-usage">
+                <div class="page-header">
+                    <h3>4. Usage</h3>
+                </div>
+            </section>
+
+            <section id="bundle-advanced">
+                <div class="page-header">
+                    <h3>5. Advanced</h3>
+                </div>
+            </section>
+        </div>
+    </div>
+</div><!-- /container -->

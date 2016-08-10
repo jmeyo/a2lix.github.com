@@ -1,11 +1,19 @@
-auto: true
-markdown: rdiscount
-pygments: true
-exclude: ["README.md","nbproject"]
+# Plugins
+gems:
+  - jekyll-redirect-from
 
+# Dependencies
+markdown: kramdown
+highlighter: rouge
+
+# General
+#permalink: pretty
+exclude: [README.md, CNAME, .gitignore, Gemfile, Gemfile.lock]
+
+# Custom vars
+website_url: http://a2lix.fr
+website_title: A2LiX Web Production
+website_description: A2LiX Web Production - Symfony2 bundles | Projects | Blog
+website_author: David ALLIX
 paginate: 10
 paginate_path: page:num
-
-website_url: http://a2lix.fr
-website_title: A2LiX
-website_author: David ALLIX

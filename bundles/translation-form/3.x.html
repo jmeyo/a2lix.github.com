@@ -1,0 +1,239 @@
+---
+layout: default
+title: TranslationForm - Bundles - latest 3.x
+redirect_from:
+  - /bundles/translation-form/
+bundle: translation-form
+---
+
+<header class="jumbotron a2lix-jumbotron subhead">
+    <div class="container">
+        <h1>A2LiX Translation Form</h1>
+        <p class="lead">
+            This bundle help you to manage translations of your doctrine objects with a new form type 'a2lix_translations' which will generate automatically some fields for you.
+        </p>
+        <p>
+            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=TranslationFormBundle&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+            <a href="http://knpbundles.com/a2lix/TranslationFormBundle"><img class="knpbundle-img" src="http://knpbundles.com/a2lix/TranslationFormBundle/badge-short"></a>
+        </p>
+    </div>
+</header>
+
+<div class="container" role="main">
+    <div class="row">
+        <aside class="col-md-3 a2lix-sidebar">
+            <h3>Versions</h3>
+            <ul class="nav nav-pills a2lix-version">
+                <li class="active"><a href="/bundles/translation-form/3.x.html">3.x (latest)</a></li>
+                <li><a href="/bundles/translation-form/2.x.html">2.x</a></li>
+                <li><a href="/bundles/translation-form/1.x.html">1.x</a></li>
+            </ul>
+            <h3>Contents</h3>
+            <div id="scrollspy">
+                <ul class="nav nav-pills nav-stacked a2lix-sidenav" data-spy="affix" data-offset-top="525">
+                    <li><a href="#bundle-screenshot"><i class="glyphicon glyphicon-chevron-right"></i> Screenshot</a></li>
+                    <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
+                    <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
+                    <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
+                    <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
+                    <li><a href="#bundle-additional"><i class="glyphicon glyphicon-chevron-right"></i> Additional</a></li>
+                    <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="col-md-9">
+            <section id="bundle-screenshot">
+                <div class="page-header">
+                    <h3>0. Screenshot</h3>
+                </div>
+
+                <img src="/assets/img/a2lix_translationForm.jpg" class="img-thumbnail" style="height: 400px" />
+            </section>
+
+            <section id="bundle-requirement">
+                <div class="page-header">
+                    <h3>1. Requirement</h3>
+                </div>
+
+                <ul>
+                    <li>Symfony >= v2.8 (and so, Symfony >= 3.x)</li>
+                    <li>Your Doctrine objects configured with an i18n strategy of your choice</li>
+                </ul>
+
+                <p>Strategies documentations :</p>
+
+                <ol>
+                    <li><a href="https://github.com/KnpLabs/DoctrineBehaviors#translatable">KnpDoctrineExtension</a> An indexBy strategy PHP5.4+ <span class="label label-success">Recommended</span></li>
+                    <li><a href="http://github.com/a2lix/I18nDoctrineBundle">A2lixI18nDoctrineBundle</a> An indexBy strategy</li>
+                    <li><a href="http://github.com/Prezent/doctrine-translatable-bundle/blob/master/Resources/doc/index.md">PrezentDoctrineTranslatableBundle</a> An indexBy strategy PHP5.3</li>
+                </ol>
+            </section>
+
+            <section id="bundle-installation">
+                <div class="page-header">
+                    <h3>2. Installation</h3>
+                </div>
+
+                <p>Use composer</p>
+
+{% highlight bash %}
+composer require a2lix/translation-form-bundle
+{% endhighlight %}
+
+                <p>After the successful installation, add in your AppKernel.php file</p>
+
+{% highlight php %}
+// in AppKernel::registerBundles()
+$bundles = array(
+// ...
+new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
+new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+// ...
+);
+{% endhighlight %}
+            </section>
+
+            <section id="bundle-configuration">
+                <div class="page-header">
+                    <h3>3. Configuration</h3>
+                </div>
+
+                <p>There is no minimal configuration. Full list of optional parameters:</p>
+
+{% highlight yaml %}
+# app/config/config.yml
+a2lix_translation_form:
+    locale_provider: default       # [1]
+    locales: [en, fr, es, de]      # [1-a]
+    default_locale: en             # [1-b]
+    required_locales: [fr]         # [1-c]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [2]
+{% endhighlight %}
+
+                <ul>
+                    <li>
+                        [1] Custom locale provider service id. Default one relies on [1-*] values:
+                        <ul>
+                            <li>[1-a] List of translations locales to propose</li>
+                            <li>[1-b] Default locale</li>
+                            <li>[1-c] List of required translations locales</li>
+                        </ul>
+                    </li>
+                    <li>[2] The default template is Twitter Bootstrap compatible. You can redefine your own here</li>
+                </ul>
+            </section>
+
+            <section id="bundle-usage">
+                <div class="page-header">
+                    <h3>4. Usage</h3>
+                </div>
+
+                <h4>In a classic formType</h4>
+
+{% highlight php %}
+// Symfony >= 3.0
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+...
+$builder->add('translations', TranslationsType::class);
+
+// OR Symfony >= 2.8
+$builder->add('translations', 'a2lix_translations');
+{% endhighlight %}
+
+                <h4>Advanced examples</h4>
+{% highlight php %}
+// Symfony >= 3.0
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+...
+$builder->add('translations', TranslationsType::class, [
+    'locales' => ['en', 'fr', 'es', 'de'],   // [1]
+    'default_locale' => ['en']               // [1]
+    'required_locales' => ['fr'],            // [1]
+    'fields' => [                               // [2]
+        'description' => [                         // [3.a]
+            'field_type' => 'textarea',                // [4]
+            'label' => 'descript.',                    // [4]
+            'locale_options' => [                  // [3.b]
+                'es' => ['label' => 'descripción']     // [4]
+                'fr' => ['display' => false]           // [4]
+            ]
+        ]
+    ],
+    'excluded_fields' => ['details']            // [2]
+]);
+{% endhighlight %}
+
+                <ul>
+                    <li>[1] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[2] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[3] Optionnal. If set, override the auto configuration of fields</li>
+                    <li>[3.a] Optionnal. - For a field, applied to all locales</li>
+                    <li>[3.b] Optionnal. - For a specific locale of a field</li>
+                    <li>[4] Optionnal. Common options of symfony forms (max_length, required, trim, read_only, constraints, ...), which was added 'field_type' and 'display'</li>
+                </ul>
+            </section>
+
+            <section id="bundle-additional">
+                <div class="page-header">
+                    <h3>5. Additional</h3>
+                </div>
+
+                <h2>TranslationsFormsType</h2>
+
+                <p>A different approach for entities which don't share fields untranslated. No strategy used here, only a locale field in your entity.</p>
+
+{% highlight php %}
+// Symfony >= 3.0
+use A2lix\TranslationFormBundle\Form\Type\TranslationsFormsType;
+...
+$builder->add('translations', TranslationsFormsType::class, [
+    'locales' => ['en', 'fr', 'es', 'de'],   // [1]
+    'default_locale' => ['en']               // [1]
+    'required_locales' => ['fr'],            // [1]
+    'form_type' => ProductMediaType::class,     // [2 - Mandatory]
+    'form_options' => [                         // [2bis]
+         'context' => 'pdf'
+    ]
+]);
+{% endhighlight %}
+
+                <ul>
+                    <li>[1] Optionnal. If set, override the default value from config.yml</li>
+                    <li>[2] Mandatory. A real form type that you have to do</li>
+                    <li>[2bis] Optionnal. - An array of options that you can set to your form</li>
+                </ul>
+
+                <h2>TranslatedEntityType</h2>
+
+                <p>Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations</p>
+
+{% highlight php %}
+// Symfony >= 3.0
+use A2lix\TranslationFormBundle\Form\Type\TranslatedEntityType;
+...
+$builder->add('medias', TranslatedEntityType::class, [
+    'class' => 'A2lix\DemoTranslationBundle\Entity\Media',   // [1 - Mandatory]
+    'translation_property' => 'text',                           // [2 - Mandatory]
+    'multiple' => true,                                             // [3]
+));
+{% endhighlight %}
+
+                <ul>
+                    <li>[1] Path of the translatable class</li>
+                    <li>[2] Property/Method of the translatable class that will be display</li>
+                    <li>[3] Common options of the 'entity' symfony2 form type (multiple, ...)</li>
+                </ul>
+
+                <h2>Assets</h2>
+
+                <p>
+                    If you already use Twitter Bootstrap, you only need to enable the <a href="http://getbootstrap.com/javascript/#tabs">Tab functionality</a>
+                    and use <b>a2lix_translation_bootstrap.js</b>.
+                </p>
+                <p>
+                    Otherwise, you will still need jquery, and you use <b>a2lix_translation_default.js</b> and <b>a2lix_translation_default.css</b>.
+                </p>
+            </section>
+        </div>
+    </div>
+</div><!-- /container -->

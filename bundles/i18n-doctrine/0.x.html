@@ -1,27 +1,32 @@
 ---
 layout: default
 title: I18nDoctrine - Bundles
+redirect_from:
+  - /bundles/i18n-doctrine/
+bundle: i18n-doctrine
 ---
 
 <header class="jumbotron a2lix-jumbotron subhead">
     <div class="container">
         <h1>A2LiX I18n Doctrine</h1>
         <p class="lead">
-            Another alternative to Gedmo and KnpLabs DoctrineExtension for translate your Doctrine objects. On same approach of the KnpLabs strategy but with the use of Doctrine Filters.<br>
+            Another alternative to Gedmo and KnpLabs DoctrineExtension for translate your Doctrine objects. On same approach of the KnpLabs strategy
+            but with the use of Doctrine Filters.<br>
             (Important, no fallback strategy to the default locale will be implemented. You should see the wip-2.4 version of Gedmo Doctrine Extension as alternative)
         </p>
         <p>
-            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=I18nDoctrineBundle&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=a2lix&repo=I18nDoctrineBundle&type=watch&count=true"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
         </p>
     </div>
 </header>
 
 <div class="container" role="main">
     <div class="row">
-        <aside class="col-lg-3 a2lix-sidebar">
+        <aside class="col-md-3 a2lix-sidebar">
             <h3>Versions</h3>
             <ul class="nav nav-pills a2lix-version">
-                <li class="active"><a href="/bundles/i18n-doctrine">master</a></li>
+                <li class="active"><a href="/bundles/i18n-doctrine/0.x.html">0.x (latest)</a></li>
             </ul>
             <h3>Contents</h3>
             <div id="scrollspy">
@@ -34,10 +39,10 @@ title: I18nDoctrine - Bundles
                 </ul>
             </div>
         </aside>
-        <div class="col-lg-9">
+        <div class="col-md-9">
             <section id="bundle-requirement">
                 <div class="page-header">
-                    <h1>1. Requirement</h1>
+                    <h3>1. Requirement</h3>
                 </div>
 
                 <ul>
@@ -47,13 +52,13 @@ title: I18nDoctrine - Bundles
 
             <section id="bundle-installation">
                 <div class="page-header">
-                    <h1>2. Installation</h1>
+                    <h3>2. Installation</h3>
                 </div>
 
                 <p>Use composer</p>
 
 {% highlight bash %}
-php composer.phar require a2lix/i18n-doctrine-bundle
+composer require a2lix/i18n-doctrine-bundle
 {% endhighlight %}
 
                 <p>After the successful installation, add in your AppKernel.php file</p>
@@ -70,7 +75,7 @@ new A2lix\I18nDoctrineBundle\A2lixI18nDoctrineBundle(),
 
             <section id="bundle-configuration">
                 <div class="page-header">
-                    <h1>3. Configuration</h1>
+                    <h3>3. Configuration</h3>
                 </div>
 
                 <p>There is no minimal configuration. Full list:</p>
@@ -109,7 +114,7 @@ a2lix_i18n_doctrine:
 
             <section id="bundle-usage">
                 <div class="page-header">
-                    <h1>4. Usage</h1>
+                    <h3>4. Usage</h3>
                 </div>
 
                 <p>Example for an existing object Product</p>
@@ -182,6 +187,7 @@ class Product
 namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -191,18 +197,16 @@ class Product
     use \A2lix\I18nDoctrineBundle\Doctrine\ORM\Util\Translatable;
 
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
+    /**
+     * @Assert\Valid
+     */
     protected $translations;
-
-    public function __contruct()
-    {
-        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getId()
     {
@@ -278,7 +282,7 @@ class ProductTranslation implements \A2lix\I18nDoctrineBundle\Doctrine\Interface
 
             <section id="bundle-advanced">
                 <div class="page-header">
-                    <h1>5. Advanced</h1>
+                    <h3>5. Advanced</h3>
                 </div>
 
                 <p>If you use PHP5.4+, you can use some traits provided in Doctrine/O*M/Util</p>
