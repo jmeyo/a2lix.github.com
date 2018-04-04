@@ -3,42 +3,36 @@ layout: default
 title: A2LiX Web Production
 ---
 
-<div class="jumbotron a2lix-jumbotron masthead text-center">
+<div class="jumbotron bg-dark text-white text-center">
     <div class="container">
         <h1>A2LiX Web Production</h1>
-        <p class="lead">Doing its best with Symfony2</p>
-        <p><a href="/about.html" class="btn btn-default btn-lg">Learn more &raquo;</a></p>
+        <p class="lead"></p>
+        <p><a href="/about.html" class="btn btn-outline-primary btn-lg">Learn more &raquo;</a></p>
     </div>
 </div>
 
 <div class="container" role="main">
     <div class="row">
-        <section class="col-md-4">
-            <h2>Last Symfony2 bundles</h2>
+        <section class="col-md-6">
+            <h2>Latest Symfony bundles</h2>
             <hr>
             <h4><a href="/bundles/translation-form/3.x.html">A2lixTranslationForm</a></h4>
-            <p>Translate your doctrine objects easily with a custom form field</p>
+            <p>Ease translations with some dedicated Symfony form types</p>
             <h4><a href="/bundles/i18n-doctrine/0.x.html">A2lixI18nDoctrine</a></h4>
-            <p>Manage i18n for your doctrine objects</p>
+            <p>Ease your Doctrine translations with Doctrine Filters</p>
             <h4><a href="/bundles/auto-form/0.x.html">A2lixAutoForm</a></h4>
-            <p>Manage automatically forms fields</p>
-            <p><a class="btn btn-default" href="/bundles">View all &raquo;</a></p>
+            <p>Automate Symfony form building</p>
+            <p><a class="btn btn-outline-secondary" href="/bundles">View all &raquo;</a></p>
         </section>
 
-        <section class="col-md-4">
-            <h2>Last personal websites projects</h2>
-            <hr>
-            <p>None</p>
-        </section>
-
-        <section class="col-md-4">
-            <h2>Last blog posts</h2>
+        <section class="col-md-6">
+            <h2>Latest blog posts</h2>
             <hr>
             {% for post in site.posts %}
             <h4><a href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">{{ post.title }}</a></h4>
-            <p>{{ post.content | truncatewords(10) }}</p>
+            <p>{{ post.content | strip_html | truncatewords: 10 }}</p>
             {% endfor %}
-            <p><a class="btn btn-default" href="/blog.html">View all &raquo;</a></p>
+            <p><a class="btn btn-outline-secondary" href="/blog.html">View all &raquo;</a></p>
         </section>
     </div>
 </div><!-- /container -->

@@ -5,84 +5,10 @@ body {
     position: relative; /* For scrollyspy */
 }
 
-footer {
-    text-align: center;
-}
-
 .github-btn {
     vertical-align: middle;
 }
 
 .knpbundle-img {
     height: 20px;
-}
-
-.a2lix-version {
-    margin-bottom: 10px;
-}
-
-
-/* Sidenav
--------------------------------------------------- */
-
-.a2lix-sidenav {
-    width: 233px;
-}
-
-.a2lix-sidenav.affix {
-    top: 60px;
-}
-
-.a2lix-sidenav .glyphicon-chevron-right {
-    float: right;
-    margin-top: 1px;
-    margin-right: -6px;
-    opacity: .25;
-    color: #000;
-}
-
-.a2lix-sidenav a:hover .glyphicon-chevron-right {
-    opacity: .5;
-}
-
-.a2lix-sidenav .active .glyphicon-chevron-right,
-.a2lix-sidenav .active a:hover .glyphicon-chevron-right {
-    color: #fff;
-    opacity: 1;
-}
-
-
-/* Jumbotrons
--------------------------------------------------- */
-
-.a2lix-jumbotron {
-    color: #fff;
-    background-color: #333;
-}
-
-.a2lix-jumbotron a:hover {
-    color: #fff;
-}
-
-/* Download button */
-.a2lix-jumbotron .btn
-.a2lix-jumbotron .btn,
-.a2lix-jumbotron .btn:hover,
-.a2lix-jumbotron .btn:active {
-    color: #b94a48;
-}
-
-
-/* Footer
--------------------------------------------------- */
-
-.a2lix-footer {
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 100px;
-    border-top: 1px solid #e5e5e5;
-}
-
-.a2lix-footer p {
-    color: #777;
 }

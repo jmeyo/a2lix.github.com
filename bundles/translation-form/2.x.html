@@ -4,7 +4,7 @@ title: TranslationForm - Bundles - 2.x
 bundle: translation-form
 ---
 
-<header class="jumbotron a2lix-jumbotron subhead">
+<header class="jumbotron bg-dark text-white">
     <div class="container">
         <h1>A2LiX Translation Form</h1>
         <p class="lead">
@@ -17,29 +17,35 @@ bundle: translation-form
     </div>
 </header>
 
-<div class="container" role="main">
+<div class="container-fluid">
     <div class="row">
-        <aside class="col-md-3 a2lix-sidebar">
-            <h3>Versions</h3>
-            <ul class="nav nav-pills a2lix-version">
-                <li><a href="/bundles/translation-form/3.x.html">3.x (latest)</a></li>
-                <li class="active"><a href="/bundles/translation-form/2.x.html">2.x</a></li>
-                <li><a href="/bundles/translation-form/1.x.html">1.x</a></li>
+        <aside class="col-12 col-md-2">
+            <h5>Versions</h5>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a href="/bundles/translation-form/3.x.html" class="nav-link">3.x (latest)</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/bundles/translation-form/2.x.html" class="nav-link active">2.x</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/bundles/translation-form/1.x.html" class="nav-link">1.x</a>
+                </li>
             </ul>
-            <h3>Contents</h3>
-            <div id="scrollspy">
-                <ul class="nav nav-pills nav-stacked a2lix-sidenav" data-spy="affix" data-offset-top="525">
-                    <li><a href="#bundle-screenshot"><i class="glyphicon glyphicon-chevron-right"></i> Screenshot</a></li>
-                    <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
-                    <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
-                    <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
-                    <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
-                    <li><a href="#bundle-additional"><i class="glyphicon glyphicon-chevron-right"></i> Additional</a></li>
-                    <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
-                </ul>
-            </div>
+            <nav id="scrollspy" class="navbar navbar-light" style="position:sticky; top:50px">
+                <a class="navbar-brand" href="#">Navigation</a>
+                <nav class="nav nav-pills flex-column">
+                    <a href="#bundle-screenshot" class="nav-link">Screenshot</a>
+                    <a href="#bundle-requirement" class="nav-link">Requirement</a>
+                    <a href="#bundle-installation" class="nav-link">Installation</a>
+                    <a href="#bundle-configuration" class="nav-link">Configuration</a>
+                    <a href="#bundle-usage" class="nav-link">Usage</a>
+                    <a href="#bundle-additional" class="nav-link">Additional</a>
+                </nav>
+            </nav>
         </aside>
-        <div class="col-md-9">
+
+        <main class="col-12 col-md-10" role="main">
             <section id="bundle-screenshot">
                 <div class="page-header">
                     <h3>0. Screenshot</h3>
@@ -54,7 +60,7 @@ bundle: translation-form
                 </div>
 
                 <ul>
-                    <li>Symfony >= v2.3 (and partial support of Symfony 3.x)</li>
+                    <li>Symfony >= v2.3</li>
                     <li>Your Doctrine objects configured with an i18n strategy of your choice</li>
                 </ul>
 
@@ -115,7 +121,7 @@ a2lix_translation_form:
                     <li>
                         [1] Custom locale provider service id. Default one relies on [1-*] values:
                         <ul>
-                            <li>[1-a] List of translations locales to propose</li>
+                            <li>[1-a] List of translations locales to display</li>
                             <li>[1-b] Default locale</li>
                             <li>[1-c] List of required translations locales</li>
                         </ul>
