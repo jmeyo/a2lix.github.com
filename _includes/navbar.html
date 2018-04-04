@@ -1,30 +1,36 @@
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">{{ site.website_title }}</a>
-        </div>
-        <nav class="collapse navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav">
-                <li {% if "/" == page.url %}class="active"{% endif %}><a href="/">Home</a></li>
-                <li {% if page.bundle %}class="active"{% endif %}>
-                    <a href="/bundles" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Symfony2 Bundles <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li {% if "translation-form" == page.bundle %}class="active"{% endif %}><a href="/bundles/translation-form/3.x.html">A2lixTranslationForm</a></li>
-                        <li {% if "i18n-doctrine" == page.bundle %}class="active"{% endif %}><a href="/bundles/i18n-doctrine/0.x.html">A2lixI18nDoctrine</a></li>
-                        <li {% if "auto-form" == page.bundle %}class="active"{% endif %}><a href="/bundles/auto-form/0.x.html">A2lixAutoForm</a></li>
-                    </ul>
+<header>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top bg-light">
+        <a class="navbar-brand" href="/">{{ site.website_title }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if "/" == page.url %}active{% endif %}">
+                    <a href="/" class="nav-link">Home</a>
                 </li>
-                <li {% if "/projects/index.html" == page.url %}class="active"{% endif %}><a href="/projects">Projects</a></li>
-                <li {% if "/blog.html" == page.url %}class="active"{% endif %}><a href="/blog.html">Blog</a></li>
-                <li {% if "/about.html" == page.url %}class="active"{% endif %}><a href="/about.html">About</a></li>
+                <li class="nav-item dropdown {% if page.bundle %}active{% endif %}">
+                    <a href="/bundles" class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Symfony Bundles
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a href="/bundles/translation-form/3.x.html" class="dropdown-item {% if "translation-form" == page.bundle %}show{% endif %}">A2lixTranslationForm</a>
+                        <a href="/bundles/i18n-doctrine/0.x.html" class="dropdown-item {% if "i18n-doctrine" == page.bundle %}show{% endif %}">A2lixI18nDoctrine</a>
+                        <a href="/bundles/auto-form/0.x.html" class="dropdown-item {% if "auto-form" == page.bundle %}show{% endif %}">A2lixAutoForm</a>
+                    </div>
+                </li>
+                <li class="nav-item {% if "/projects/" == page.url %}active{% endif %}">
+                    <a href="/projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item {% if "/blog.html" == page.url %}active{% endif %}">
+                    <a href="/blog.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item {% if "/about.html" == page.url %}active{% endif %}">
+                    <a href="/about.html" class="nav-link">About</a>
+                </li>
             </ul>
-        </nav><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-</div><!-- /.navbar -->
-{{ }}
+        </div>
+    </nav>
+</header>

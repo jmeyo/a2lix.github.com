@@ -6,7 +6,7 @@ redirect_from:
 bundle: i18n-doctrine
 ---
 
-<header class="jumbotron a2lix-jumbotron subhead">
+<header class="jumbotron bg-dark text-white">
     <div class="container">
         <h1>A2LiX I18n Doctrine</h1>
         <p class="lead">
@@ -21,25 +21,28 @@ bundle: i18n-doctrine
     </div>
 </header>
 
-<div class="container" role="main">
+<div class="container-fluid">
     <div class="row">
-        <aside class="col-md-3 a2lix-sidebar">
-            <h3>Versions</h3>
-            <ul class="nav nav-pills a2lix-version">
-                <li class="active"><a href="/bundles/i18n-doctrine/0.x.html">0.x (latest)</a></li>
+        <aside class="col-12 col-md-2">
+            <h5>Versions</h5>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a href="/bundles/i18n-doctrine/0.x.html" class="nav-link active">0.x (latest)</a>
+                </li>
             </ul>
-            <h3>Contents</h3>
-            <div id="scrollspy">
-                <ul class="nav nav-pills nav-stacked a2lix-sidenav" data-spy="affix" data-offset-top="525">
-                    <li><a href="#bundle-requirement"><i class="glyphicon glyphicon-chevron-right"></i> Requirement</a></li>
-                    <li><a href="#bundle-installation"><i class="glyphicon glyphicon-chevron-right"></i> Installation</a></li>
-                    <li><a href="#bundle-configuration"><i class="glyphicon glyphicon-chevron-right"></i> Configuration</a></li>
-                    <li><a href="#bundle-usage"><i class="glyphicon glyphicon-chevron-right"></i> Usage</a></li>
-                    <li><a href="#bundle-advanced"><i class="glyphicon glyphicon-chevron-right"></i> Advanced</a></li>
-                </ul>
-            </div>
+            <nav id="scrollspy" class="navbar navbar-light" style="position:sticky; top:50px">
+                <a class="navbar-brand" href="#">Navigation</a>
+                <nav class="nav nav-pills flex-column">
+                    <a href="#bundle-requirement" class="nav-link">Requirement</a>
+                    <a href="#bundle-installation" class="nav-link">Installation</a>
+                    <a href="#bundle-configuration" class="nav-link">Configuration</a>
+                    <a href="#bundle-usage" class="nav-link">Usage</a>
+                    <a href="#bundle-advanced" class="nav-link">Advanced</a>
+                </nav>
+            </nav>
         </aside>
-        <div class="col-md-9">
+
+        <main class="col-12 col-md-10" role="main">
             <section id="bundle-requirement">
                 <div class="page-header">
                     <h3>1. Requirement</h3>
