@@ -22,14 +22,14 @@ bundle: auto-form
 <div class="container-fluid">
     <div class="row">
         <aside class="col-12 col-md-2">
-            <h5>Versions</h5>
+            <p class="h5">Versions</p>
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a href="/bundles/auto-form/0.x.html" class="nav-link active">0.x (latest)</a>
                 </li>
             </ul>
-            <nav id="scrollspy" class="navbar navbar-light" style="position:sticky; top:50px">
-                <a class="navbar-brand" href="#">Navigation</a>
+            <p class="h5 mt-5">Navigation</p>
+            <nav id="scrollspy" class="navbar navbar-light">
                 <nav class="nav nav-pills flex-column">
                     <a href="#bundle-requirement" class="nav-link">Requirement</a>
                     <a href="#bundle-installation" class="nav-link">Installation</a>
@@ -42,9 +42,7 @@ bundle: auto-form
 
         <main class="col-12 col-md-10" role="main">
             <section id="bundle-requirement">
-                <div class="page-header">
-                    <h3>1. Requirement</h3>
-                </div>
+                <h3>1. Requirement</h3>
 
                 <ul>
                     <li>Symfony >= 3.4</li>
@@ -52,9 +50,7 @@ bundle: auto-form
             </section>
 
             <section id="bundle-installation">
-                <div class="page-header">
-                    <h3>2. Installation</h3>
-                </div>
+                <h3>2. Installation</h3>
 
                 <p>Use composer</p>
 
@@ -79,9 +75,7 @@ new A2lix\AutoFormBundle\A2lixAutoFormBundle(),
             </section>
 
             <section id="bundle-configuration">
-                <div class="page-header">
-                    <h3>3. Configuration</h3>
-                </div>
+                <h3>3. Configuration</h3>
 
                 <p>There is no minimal configuration, so this part is optionnal. Full list:</p>
 
@@ -99,10 +93,9 @@ a2lix_auto_form:
             </section>
 
             <section id="bundle-usage">
-                <div class="page-header">
-                    <h3>4. Usage</h3>
+                <h3>4. Usage</h3>
 
-                    <h4>In a classic formType</h4>
+                <h4>In a classic formType</h4>
 
 {% highlight php %}
 use A2lix\AutoFormBundle\Form\Type\AutoFormType;
@@ -110,7 +103,8 @@ use A2lix\AutoFormBundle\Form\Type\AutoFormType;
 $builder->add('medias', AutoFormType::class);
 {% endhighlight %}
 
-                    <h4>Advanced examples</h4>
+                <h4>Advanced examples</h4>
+
 {% highlight php %}
 use A2lix\AutoFormBundle\Form\Type\AutoFormType;
 ...
@@ -137,15 +131,12 @@ $builder->add('medias', AutoFormType::class, [
                     <li>[4] Optionnal. Common options of symfony forms (max_length, required, trim, read_only, constraints, ...),
                         which was added 'field_type' and 'display'</li>
                 </ul>
-                </div>
             </section>
 
             <section id="bundle-additional">
-                <div class="page-header">
-                    <h3>5. Additional</h3>
-                </div>
+                <h3>5. Additional</h3>
 
-                <h2>Example</h2>
+                <h4>Example</h4>
 
                 <p>
                     See <a href="https://github.com/a2lix/Demo">Demo Bundle</a> for more examples.

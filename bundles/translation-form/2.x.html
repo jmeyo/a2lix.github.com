@@ -20,7 +20,7 @@ bundle: translation-form
 <div class="container-fluid">
     <div class="row">
         <aside class="col-12 col-md-2">
-            <h5>Versions</h5>
+            <p class="h5">Versions</p>
             <ul class="nav nav-pills nav-fill">
                 <li class="nav-item">
                     <a href="/bundles/translation-form/3.x.html" class="nav-link">3.x (latest)</a>
@@ -32,8 +32,8 @@ bundle: translation-form
                     <a href="/bundles/translation-form/1.x.html" class="nav-link">1.x</a>
                 </li>
             </ul>
-            <nav id="scrollspy" class="navbar navbar-light" style="position:sticky; top:50px">
-                <a class="navbar-brand" href="#">Navigation</a>
+            <p class="h5 mt-5">Navigation</p>
+            <nav id="scrollspy" class="navbar navbar-light">
                 <nav class="nav nav-pills flex-column">
                     <a href="#bundle-screenshot" class="nav-link">Screenshot</a>
                     <a href="#bundle-requirement" class="nav-link">Requirement</a>
@@ -47,17 +47,13 @@ bundle: translation-form
 
         <main class="col-12 col-md-10" role="main">
             <section id="bundle-screenshot">
-                <div class="page-header">
-                    <h3>0. Screenshot</h3>
-                </div>
+                <h3>0. Screenshot</h3>
 
                 <img src="/assets/img/a2lix_translationForm.jpg" class="img-thumbnail" style="height: 400px" />
             </section>
 
             <section id="bundle-requirement">
-                <div class="page-header">
-                    <h3>1. Requirement</h3>
-                </div>
+                <h3>1. Requirement</h3>
 
                 <ul>
                     <li>Symfony >= v2.3</li>
@@ -77,9 +73,7 @@ bundle: translation-form
             </section>
 
             <section id="bundle-installation">
-                <div class="page-header">
-                    <h3>2. Installation</h3>
-                </div>
+                <h3>2. Installation</h3>
 
                 <p>Use composer</p>
 
@@ -100,9 +94,7 @@ new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             </section>
 
             <section id="bundle-configuration">
-                <div class="page-header">
-                    <h3>3. Configuration</h3>
-                </div>
+                <h3>3. Configuration</h3>
 
                 <p>There is no minimal configuration. Full list of optional parameters:</p>
 
@@ -132,9 +124,7 @@ a2lix_translation_form:
             </section>
 
             <section id="bundle-usage">
-                <div class="page-header">
-                    <h3>4. Usage</h3>
-                </div>
+                <h3>4. Usage</h3>
 
                 <h4>In a classic formType</h4>
 
@@ -176,11 +166,9 @@ $builder->add('translations', 'a2lix_translations', array(
             </section>
 
             <section id="bundle-additional">
-                <div class="page-header">
-                    <h3>5. Additional</h3>
-                </div>
+                <h3>5. Additional</h3>
 
-                <h2>a2lix_translationsForms</h2>
+                <h4>a2lix_translationsForms</h4>
 
                 <p>A different approach for translation entire entity. No strategy used here, only a locale field in your entity.</p>
 
@@ -208,7 +196,7 @@ $builder->add('translations', 'A2lix\TranslationFormBundle\Form\Type\Translation
                     <li>[2bis] Optionnal. - An array of options that you can set to your form</li>
                 </ul>
 
-                <h2>a2lix_translatedEntity</h2>
+                <h4>a2lix_translatedEntity</h4>
 
                 <p>Modified version of the native 'entity' symfony2 form type to translate the label in the current locale by reading translations</p>
 
@@ -236,7 +224,7 @@ $builder->add('medias', 'A2lix\TranslationFormBundle\Form\Type\TranslatedEntityT
                     Current implementation required that translations exist for the current locale.
                 </div>
 
-                <h2>Assets</h2>
+                <h4>Assets</h4>
 
                 <p>
                     If you already use Twitter Bootstrap, you only need to enable the <a href="http://getbootstrap.com/javascript/#tabs">Tab functionality</a>

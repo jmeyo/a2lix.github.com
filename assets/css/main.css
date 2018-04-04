@@ -12,3 +12,27 @@ body {
 .knpbundle-img {
     height: 20px;
 }
+
+main section h3 {
+    border-bottom: 1px solid #ccc;
+    margin: 30px 0 20px;
+    padding-bottom: 10px;
+}
+
+main section h4 {
+    margin: 15px 0;
+}
+
+figure.highlight pre {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    margin: 0 0 10px;
+    padding: 10px;
+}
+
+#scrollspy {
+    position: sticky;
+    top: 50px;
+}
